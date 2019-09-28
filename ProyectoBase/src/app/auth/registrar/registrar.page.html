@@ -1,10 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>registrar</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 <ion-content  color="primary" padding>
-  <form  #form="ngForm" (ngSubmit)="register(form)">
+  <form  [formGroup]="registrarForm" (ngSubmit)="registrar()">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
@@ -13,20 +9,24 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input  name="name" type="text" placeholder="NOMBRE" ngModel required></ion-input>
+              <ion-input  formControlName="nombre" type="text" placeholder="NOMBRE" ngModel required></ion-input>
+              <div color="error" *ngIf="f.nombre.errors">*</div>
             </ion-item>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="CORREO" ngModel required></ion-input>
+              <ion-input formControlName="correo" type="email" placeholder="CORREO" ngModel required></ion-input>
+              <div color="error" *ngIf="f.correo.errors">*</div>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="CONTRASEÑA" ngModel required></ion-input>
+              <ion-input formControlName="contrasena" type="password" placeholder="CONTRASEÑA" ngModel required></ion-input>
+              <div color="error" *ngIf="f.contrasena.errors">*</div>
             </ion-item>
             <ion-item>
-              <ion-input name="confirm" type="password" placeholder="REPETIR CONTRASEÑA" ngModel required></ion-input>
+              <ion-input formControlName="confirmacionContrasena" type="password" placeholder="REPETIR CONTRASEÑA" ngModel required></ion-input>
+              <div color="error" *ngIf="f.confirmacionContrasena.errors">*</div>
             </ion-item>
           </div>
           <div padding>
-            <ion-button  size="round" type="submit" [disabled]="form.invalid" expand="block">REGISTRAR</ion-button>
+            <ion-button  size="round" type="submit" [disabled]="registrarForm.invalid" expand="block">REGISTRAR</ion-button>
           </div>
         </ion-col>
       </ion-row>
