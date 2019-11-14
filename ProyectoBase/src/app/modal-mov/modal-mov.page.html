@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="ion-text-center">Agregar Movimiento</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <ion-content padding>
+      <form [formGroup]="addForm" (ngSubmit)="enviar(addForm.value)">
+        <ion-grid>
+          <ion-row color="primary" justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <div padding>
+                <ion-item>
+                  <ion-input formControlName="descripcion" type="text" placeholder="Descripción"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input formControlName="cantidad" type="number" placeholder="Cantidad"></ion-input>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="divButtonSmall">
+                <ion-segment formControlName="tipo">
+                  <ion-segment-button value="1" checked>
+                    <ion-label>Ingreso</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button value="2">
+                    <ion-label>Egreso </ion-label>
+                  </ion-segment-button>
+                </ion-segment>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div>
+                <ion-item>
+                  <ion-label>Cuenta</ion-label>
+                  <ion-select placeholder="Cuenta" formControlName="cuenta">
+                    <ion-select-option *ngFor="let cuentax of cuentas" [value]="cuentax.Nombre">{{cuentax.Nombre}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="etiqueta2">
+                <ion-item>
+                  <ion-label>Etiqueta</ion-label>
+                  <ion-select placeholder="Etiqueta" formControlName="etiqueta">
+                    <ion-select-option *ngFor="let etiquetax of etiquetas" [value]="etiquetax.Nombre">{{etiquetax.Nombre}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="divButton">
+          <ion-button (click)="salirAdd()" color="danger" size="medium">Cancelar</ion-button>
+        </div >
+        <div class="divButton">
+          <ion-button color="success" size="medium" [disabled]="addForm.invalid" type="submit">Agregar</ion-button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-content>
